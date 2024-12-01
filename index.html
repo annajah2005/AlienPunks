@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlienPunks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(15, 12, 41, 0.9);
+            padding: 1rem;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav a {
+            color: #f7931a;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #f7931a;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: url('space-background.jpg') no-repeat center center/cover;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .header:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .header img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animation */
+        .animate-fade {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Description */
+        .description {
+            padding: 3rem 2rem;
+            text-align: center;
+            line-height: 1.8;
+            background: rgba(15, 12, 41, 0.8);
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .description h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, #24243e, #302b63, #0f0c29);
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .roadmap h2 {
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .roadmap ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap ul li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(120deg, #24243e, #302b63, #0f0c29);
+            margin-top: 4rem;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta a {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            background-color: #f7931a;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta a:hover {
+            background-color: #d9790b;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+            color: #f7931a;
+            font-size: 1rem;
+            margin-top: 6rem;
+        }
+
+        .footer .social a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .footer .social img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer .social img:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Include semua elemen sesuai permintaan -->
+    <!-- Pastikan gambar dan konten tetap lengkap -->
+    <body>
+        <!-- Navigation -->
+        <div class="nav">
+            <a href="#mint">Mint</a>
+            <a href="#description">Description</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    
+        <!-- Header Section -->
+        <header class="header animate-fade">
+            <img src="ezgif.com-animated-gif-maker.gif" alt="AlienPunks Logo">
+            <h1>AlienPunks</h1>
+            <p> 444 exclusive NFTs inspired by CryptoPunks</p>
+        </header>
+    
+
+    
+        <!-- Mint Section -->
+        <section id="mint" class="cta">
+            <h2>Mint Your AlienPunks</h2>
+            <p>Mint your exclusive AlienPunk join the revolution, own a rare NFT, and be part of history</p>
+            <a href="https://stacks.gamma.io/" target="_blank">Mint soon </a>
+        </section>
+        <!-- Description Section -->
+        <section id="description" class="description">
+            <h2>AlienPunks</h2>
+            <p>
+                Step into the extraordinary universe of AlienPunks, a collection of 444 unique NFTs inspired by the iconic CryptoPunks and reimagined with a cosmic twist. Built on the Stacks blockchain, AlienPunks combine the beloved pixel art style with futuristic, extraterrestrial designs, offering a fresh take on a classic concept.
+            </p>
+            <p>
+                Each AlienPunk is a digital masterpiece, featuring distinct traits and vibrant designs that capture the imagination. From quirky expressions to cosmic-inspired details, every NFT in this limited collection tells its own story, making it a must-have for collectors and enthusiasts alike.
+            </p>
+            <p>
+                AlienPunks honor the legacy of CryptoPunks while carving out their own path in the NFT space. With only 444 ever created, these rare and exclusive pieces are a testament to individuality and creative innovation.
+            </p>
+            <p>
+                Don’t miss your chance to own a piece of this interstellar collection. Join the growing community of AlienPunks collectors today and celebrate the future of pixel art on the Stacks blockchain!
+            </p>
+        </section>
+    
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="roadmap">
+            <h2>Roadmap</h2>
+            <ul>
+
+                <li><strong>Phase 1:</strong> Deployment - Securely deploy the AlienPunks collection on the Stacks blockchain, ensuring a smooth infrastructure setup.</li>
+                <li><strong>Phase 2:</strong> Minting - Launch the minting event for 444 exclusive NFTs, providing early supporters with special rewards.</li>
+                <li><strong>Phase 3</strong> Collaborations - Forge key partnerships with other NFT projects and influencers to expand visibility and enhance community engagement.</li>
+            </ul>
+        </section>
+    
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery">
+            <img src="1.png" alt="AlienPunk 1">
+            <img src="2.png" alt="AlienPunk 2">
+            <img src="3.png" alt="AlienPunk 3">
+            <img src="5.png" alt="AlienPunk 4">
+            <img src="4.png" alt="AlienPunk 1">
+            <img src="6.png" alt="AlienPunk 2">
+            <img src="7.png" alt="AlienPunk 3">
+            <img src="8.png" alt="AlienPunk 4">
+            <img src="9.png" alt="AlienPunk 1">
+            <img src="10.png" alt="AlienPunk 2">
+            <img src="11.png" alt="AlienPunk 3">
+            <img src="12.png" alt="AlienPunk 4">
+            <img src="13.png" alt="AlienPunk 3">
+            <img src="14.png" alt="AlienPunk 4">
+            <img src="15.png" alt="AlienPunk 3">
+            <img src="16.png" alt="AlienPunk 4">
+        </section>
+    
+        <!-- FAQ Section -->
+        <section id="faq" class="description">
+            <h2>FAQ</h2>
+            <div>
+                <h3>What is AlienPunks?</h3>
+                <p>
+                    AlienPunks is a collection of 444 unique NFTs inspired by CryptoPunks and reimagined with a cosmic twist, built on the Stacks blockchain.
+                </p>
+            </div>
+            <div>
+                <h3>How can I mint an AlienPunk?</h3>
+                <p>
+                    You can mint your AlienPunk via the Gamma Launchpad. Just click the "Mint Now" button above to access the minting page.
+                </p>
+            </div>
+            <div>
+                <h3>What blockchain is AlienPunks on?</h3>
+                <p>
+                    AlienPunks is built on the Stacks blockchain, leveraging Bitcoin for security and stability.
+                </p>
+            </div>
+            <div>
+                <h3>How many AlienPunks are available?</h3>
+                <p>
+                    There are only 444 AlienPunks available, making this collection highly limited and exclusive.
+                </p>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 AlienPunks | Built on Stacks Blockchain</p>
+            <div class="social">
+                <a href="https://twitter.com/your_twitter_handle" target="_blank">
+                    <img src="twitter-logo.png">
+                </a>
+            </div>
+        </footer>
+    </body>
